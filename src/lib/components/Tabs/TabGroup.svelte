@@ -6,6 +6,7 @@
     let selectedTab = Object.keys(tabs).length > 0 ? Object.keys(tabs)[0] : "";
     let autoInc = 1;
 
+    console.log(tabs);
     const dispatch = createEventDispatcher();
     const onSelectTab = (event) => {
         selectedTab = event.detail;
@@ -18,11 +19,11 @@
 
 <div class="box">
     <ul>
-        {#each Object.keys(tabs) as tab}
+        {#each Object.keys(tabs) as key}
             <li>
                 <ClosingTab
-                    tabName={tab}
-                    isActive={tab === selectedTab}
+                    tab={tabs[key]}
+                    isActive={key === selectedTab}
                     on:closeTab
                     on:selectTab={onSelectTab}
                 />

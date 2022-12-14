@@ -1,19 +1,18 @@
 <script>
     import { createEventDispatcher } from "svelte";
 
-    export let tabName = "";
+    export let tab = {};
     export let isActive = false;
-
     const dispatch = createEventDispatcher();
-    const onSelectTab = () => dispatch("selectTab", tabName);
-    const onCloseTab = () => dispatch("closeTab", tabName);
+    const onSelectTab = () => dispatch("selectTab", tab.id);
+    const onCloseTab = () => dispatch("closeTab", tab.id);
 </script>
 
 <button
     class={isActive ? "tab-item active" : "tab-item"}
     on:click={onSelectTab}
 >
-    <span>{tabName}</span>
+    <span>{tab.displayName}</span>
     <button id="btn-close" on:click={onCloseTab}>X</button>
 </button>
 

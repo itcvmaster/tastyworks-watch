@@ -46,7 +46,7 @@
 	const handleCreateTab = (event) => {
 		userStore.dispatch({
 			type: Actions.CREATE_WATCH,
-			payload: { watchId: event.detail },
+			payload: { displayName: event.detail },
 		});
 	};
 
