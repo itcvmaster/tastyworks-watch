@@ -1,6 +1,6 @@
 <script>
     // @ts-nocheck
-
+    import "./styles.css";
     import { onDestroy } from "svelte";
     import { browser } from "$app/environment";
     import { userStore } from "../lib/store";
