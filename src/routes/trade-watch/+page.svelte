@@ -9,42 +9,14 @@
 	import TabGroup from "../../lib/components/Tabs/TabGroup.svelte";
 
 	let user = {};
-	let symbols = [];
 	let unsubscribe = userStore.subscribe((u) => (user = u));
 	onDestroy(unsubscribe);
 
+	let selectedTab = "";
 	let isTableView = true;
-	let headers = [];
-	let tableData = [];
 	const handleSelectTab = (event) => {
-		headers = [
-			{
-				label: "Stock Symbol",
-				dataKey: "symbol",
-			},
-			{
-				label: "Description",
-				dataKey: "desc",
-			},
-			{
-				label: "Bid Price",
-				dataKey: "bid_price",
-			},
-			{
-				label: "Ask Price",
-				dataKey: "ask_price",
-			},
-			{
-				label: "Last Price",
-				dataKey: "last_price",
-			},
-		];
-		tableData = user.watches && user.watches[event.detail] || [];
+		selectedTab = event.detail;
 	}
-
-	// const handleClickCell = (event) = {
-
-	// }
 
 	const handleCreateTab = (event) => {
 		userStore.dispatch({
@@ -75,9 +47,8 @@
 		on:selectTab={handleSelectTab}
 	>
 		{#if isTableView}
-			<Table 
-				headers={headers}
-				tableData={tableData}
+			<TableView 
+				watchId={selectedTab}
 			/>
 		{/if}
 	</TabGroup>

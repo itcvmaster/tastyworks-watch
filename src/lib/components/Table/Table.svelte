@@ -23,14 +23,7 @@
         //     "bid_price": "$0.01",
         // },
     ];
-    export let transform = (data) => [
-        {"symbol": "AAPL1", "desc":"AAPL", "bid_price": 1, "ask_price":2, "last_price":3},
-        {"symbol": "AAPL2", "desc":"AAPL", "bid_price": 1, "ask_price":2, "last_price":3},
-        {"symbol": "AAPL3", "desc":"AAPL", "bid_price": 1, "ask_price":2, "last_price":3},
-        {"symbol": "AAPL4", "desc":"AAPL", "bid_price": 1, "ask_price":2, "last_price":3},
-        {"symbol": "AAPL5", "desc":"AAPL", "bid_price": 1, "ask_price":2, "last_price":3},
-        {"symbol": "AAPL6", "desc":"AAPL", "bid_price": 1, "ask_price":2, "last_price":3},
-    ];
+    export let transform = (data) => data;
     
     $: data = transform(tableData);
 </script>

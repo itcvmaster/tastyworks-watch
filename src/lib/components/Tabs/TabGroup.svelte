@@ -5,10 +5,9 @@
     import ClosingTab from "./ClosingTab.svelte";
 
     export let tabs = {};
-    let selectedTab = Object.keys(tabs).length > 0 ? Object.keys(tabs)[0] : "";
+    let selectedTab = "";
     let autoInc = 1;
 
-    console.log(tabs);
     const dispatch = createEventDispatcher();
     const onSelectTab = (event) => {
         selectedTab = event.detail;
