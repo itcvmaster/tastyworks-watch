@@ -19,6 +19,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"tinro": "^0.6.12"
+		"svelte-routing": "^1.6.0"
 	}
 }
