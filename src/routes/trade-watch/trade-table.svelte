@@ -39,14 +39,14 @@
 		tableData = user.watches && user.watches[event.detail] || [];
 	}
 
-	// const handleClickCell = (event) = {
+	const handleClickCell = (event) = {
 
-	// }
+	}
 
 	const handleCreateTab = (event) => {
 		userStore.dispatch({
 			type: Actions.CREATE_WATCH,
-			payload: { displayName: event.detail },
+			payload: { watchId: event.detail },
 		});
 	};
 
