@@ -1,10 +1,8 @@
 <script>
 	// @ts-nocheck
-	import { onMount, onDestroy } from "svelte";
+	import { onDestroy } from "svelte";
 	import { userStore } from "../../lib/store";
 	import { Actions } from "../../lib/store/actions";
-	import TableView from "./TableView.svelte";
-	// import ChartView from "./ChartView.svelte";
 	import Table from "../../lib/components/Table/Table.svelte";
 	import TabGroup from "../../lib/components/Tabs/TabGroup.svelte";
 
@@ -13,7 +11,6 @@
 	let unsubscribe = userStore.subscribe((u) => (user = u));
 	onDestroy(unsubscribe);
 
-	let isTableView = true;
 	let headers = [];
 	let tableData = [];
 	const handleSelectTab = (event) => {
@@ -62,8 +59,8 @@
 </script>
 
 <svelte:head>
-	<title>Watch Lists</title>
-	<meta name="WatchLists" content="Show informations of selected symbols" />
+	<title>Table View</title>
+	<meta name="Trade - Table View" content="Show informations of selected symbols" />
 </svelte:head>
 
 <div class="container">
@@ -74,7 +71,7 @@
 		on:createTab={handleCreateTab}
 		on:selectTab={handleSelectTab}
 	>
-		{#if isTableView}
+		{#if true}
 			<Table 
 				headers={headers}
 				tableData={tableData}
@@ -82,3 +79,14 @@
 		{/if}
 	</TabGroup>
 </div>
+
+<style>
+	.container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex: 1;
+		width: 100%;
+	}
+</style>

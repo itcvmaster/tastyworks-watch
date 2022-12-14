@@ -15,8 +15,12 @@
 <main>
 	{#if browser}
 		<AuthGuard>
-			<Login slot="not_opted" />
-			<Watchlist slot="opted" />
+			<div class="container" slot="not_opted">
+				<Login />
+			</div>
+			<div class="container" slot="opted">
+				<Watchlist />
+			</div>
 		</AuthGuard>
 	{:else}
 		<h1>Loading Local Storage...</h1>

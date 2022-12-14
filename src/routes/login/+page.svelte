@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
 	import { onDestroy } from "svelte";
 	import { userStore } from "../../lib/store";
 	import { Actions } from "../../lib/store/actions";
