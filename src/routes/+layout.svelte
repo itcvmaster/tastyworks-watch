@@ -1,11 +1,23 @@
 <script>
+	// @ts-nocheck
 	import "./styles.css";
-    import { browser } from "$app/environment";
+	import { browser } from "$app/environment";
+	import AuthGuard from "./AuthGuard.svelte";
+	import Login from "./login/+page.svelte";
+	import Watchlist from "./trade-watch/+page.svelte";
 </script>
+
+<svelte:head>
+	<title>Home</title>
+	<meta name="Show Stock Price" content="Watchlist Test" />
+</svelte:head>
 
 <main>
 	{#if browser}
-		<slot />
+		<AuthGuard>
+			<Login slot="not_opted" />
+			<Watchlist slot="opted" />
+		</AuthGuard>
 	{:else}
 		<h1>Loading Local Storage...</h1>
 	{/if}
