@@ -91,3 +91,7 @@ button:focus:not(:focus-visible) {
 	flex: 1;
 	width: 100%;
 }
+
+button {
+	cursor: pointer;
+}

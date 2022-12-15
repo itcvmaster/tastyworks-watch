@@ -16,7 +16,6 @@
 
 <style>
     button {
-        cursor: pointer;
         padding: 5px 10px;
     }
 </style>

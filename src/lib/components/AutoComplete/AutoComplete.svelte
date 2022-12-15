@@ -116,10 +116,6 @@
         padding: 10px;
     }
 
-    button {
-        cursor: pointer;
-    }
-
     #autocomplete-items-list {
         position: absolute;
         margin: 0;

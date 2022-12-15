@@ -113,7 +113,6 @@
 		color: rgba(0,0,0, 0.5);
 		background-color: transparent;
 		border: 0;
-		cursor: pointer;
 		margin: -16px -16px -16px auto;
 	}
 
@@ -140,7 +139,6 @@
         width: 100%;
     }
     button {
-        cursor: pointer;
         padding: 5px 10px;
     }
 </style>

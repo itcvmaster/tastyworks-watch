@@ -57,6 +57,5 @@
         color: brown;
         font-weight: 800;
         visibility: visible;
-        cursor: pointer;
     }
 </style>

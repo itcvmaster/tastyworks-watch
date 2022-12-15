@@ -79,6 +79,5 @@
 		font-size: 18px;
 		font-weight: 600;
 		border-radius: 15px;
-		cursor: pointer;
 	}
 </style>

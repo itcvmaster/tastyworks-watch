@@ -22,3 +22,16 @@ export const makeMatchBold = (str, keyword) => {
 export const removeBold = (str) => {
 	return str ? str.replace(/<(.)*?>/g, "") : "";
 }	
+
+// Calc & Return a function to apply scale
+export const calcScale = (domain, range) => {
+	[min, max] = domain;
+	[start, end] = range;
+
+	let scale = 0;
+	if (max !== min) {
+		scale = (end - start) / (max - min);
+	}
+
+	return (value) => value * scale;
+}

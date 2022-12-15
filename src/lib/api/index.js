@@ -49,16 +49,12 @@ export const fetchQuotes = async (symbols) => {
 }
 
 export const fetchChart = async (symbol) => {
-    if (!symbols || symbols.length === 0) return [];
 
     try {
-        const token = "&token=" + PUBLIC_IEX_API_KEY;
-        const types = "&types=quote";
-        const symbolKey = symbols.reduce((prev, cur, index) => (index === 0 ? prev + cur : prev + "," + cur), "symbols=");
-        const response = await fetch(QUOTE_ENDPOINT + "?" + symbolKey + types + token);
-        const result = await response.json();
+        // const response = await fetch(QUOTE_ENDPOINT + "?" + symbolKey + types + token);
+        // const result = await response.json();
 
-        return result;
+        // return result;
 
     } catch (e) {
         console.log("[Error - fetchQuotes]:", e);
