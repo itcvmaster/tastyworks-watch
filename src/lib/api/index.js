@@ -1,5 +1,5 @@
 // @ts-nocheck
-export const SYMBOL_ENDPOINT = "https://vast.tastyworks.com/symbols/search";
+export const SYMBOL_ENDPOINT = "https://vast.tastyworks.com/symbols/search/";
 export const QUOTE_ENDPOINT = "https://vast.tastyworks.com/symbols/search";
 
 export const fetchSymbols = async (searchKey) => {
