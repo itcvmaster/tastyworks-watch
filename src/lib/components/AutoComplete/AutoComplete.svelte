@@ -70,7 +70,7 @@
             placeholder="Search Symbols"
             bind:this={searchInput}
             bind:value={searchKey}
-            on:input={() => debounce(fetchSymbols, 500)}
+            on:input={() => debounce(fetchSymbols, 200)}
         />
 
         {#if symbols.length > 0}

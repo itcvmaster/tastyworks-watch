@@ -14,21 +14,24 @@
 	let selectedTab = "";
 	let selectedSymbol = "";
 	let isTableView = true;
-	const handleSelectTab = (event) => {
-		selectedTab = event.detail;
+	const handleSelectTab = (tab) => {
+		selectedTab = tab;
 	}
 
-	const handleCreateTab = (event) => {
+	const handleCreateTab = (displayName) => {
+		const watchId = `${Date.now()}`;
 		userStore.dispatch({
 			type: Actions.CREATE_WATCH,
-			payload: { displayName: event.detail },
+			payload: { watchId, displayName },
 		});
+
+		selectedTab = watchId;
 	};
 
-	const handleCloseTab = (event) => {
+	const handleCloseTab = (watchId) => {
 		userStore.dispatch({
 			type: Actions.DELETE_WATCH,
-			payload: { watchId: event.detail },
+			payload: { watchId },
 		});
 	};
 
@@ -51,9 +54,10 @@
 	<h1>Trading Quotes</h1>
 	<TabGroup
 		tabs={user.watches}
-		on:closeTab={handleCloseTab}
-		on:createTab={handleCreateTab}
-		on:selectTab={handleSelectTab}
+		selectedTab={selectedTab}
+		handleCloseTab={handleCloseTab}
+		handleCreateTab={handleCreateTab}
+		handleSelectTab={handleSelectTab}
 	>
 		{#if isTableView}
 			<TableView 

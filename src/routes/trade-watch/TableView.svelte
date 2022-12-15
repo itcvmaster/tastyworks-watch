@@ -52,6 +52,8 @@
                 symbol: event.detail
             }
         });
+
+        fetchQuotes(watchId);
     }
 
     export let handleViewSymbol;

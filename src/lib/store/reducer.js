@@ -27,13 +27,12 @@ export const userReducer = (state = defaultUser, action) => {
         },
 
         [Actions.CREATE_WATCH]: () => {
-            const watchId = `${Date.now()}`;
             return {
                 ...state,
                 watches: {
                     ...state.watches,
-                    [watchId]: {
-                        id: watchId,
+                    [action.payload.watchId]: {
+                        id: action.payload.watchId,
                         displayName: action.payload.displayName,
                         symbols: defaultSymbols
                     }

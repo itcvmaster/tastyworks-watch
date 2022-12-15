@@ -10,7 +10,7 @@
     };
 </script>
 
-<button on:click={handleClick}>
+<button on:click|stopPropagation={handleClick}>
     {cellOptions.label}
 </button>
 

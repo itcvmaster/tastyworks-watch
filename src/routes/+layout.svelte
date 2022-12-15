@@ -12,6 +12,7 @@
 	<meta name="Show Stock Price" content="Watchlist Test" />
 </svelte:head>
 
+<!-- Should moved to routing later -->
 <main>
 	{#if browser}
 		<AuthGuard>

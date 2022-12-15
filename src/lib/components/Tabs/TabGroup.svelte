@@ -1,21 +1,33 @@
 <script>
 // @ts-nocheck
-
-    import { createEventDispatcher } from "svelte";
     import ClosingTab from "./ClosingTab.svelte";
 
     export let tabs = {};
-    let selectedTab = "";
+    export let handleCloseTab;
+    export let handleCreateTab;
+    export let handleSelectTab;
+    export let selectedTab = "";
+
     let autoInc = 1;
 
-    const dispatch = createEventDispatcher();
+    const onCloseTab = (event) => {
+        handleCloseTab(event.detail);
+    };
     const onSelectTab = (event) => {
         selectedTab = event.detail;
-        dispatch("selectTab", selectedTab);
+        handleSelectTab(selectedTab);
     };
     const onCreateTab = () => {
-        dispatch("createTab", "Watch" + autoInc++);
+        handleCreateTab("Watch" + autoInc++);
     };
+
+    $: if (Object.keys(tabs).length > 0 && tabs[selectedTab] == undefined) {
+        onSelectTab({detail: Object.keys(tabs)[0]});
+    } 
+    
+    $: if (Object.keys(tabs).length <= 0) {
+        onSelectTab({detail: ""});
+    }
 </script>
 
 <div class="box">
@@ -25,7 +37,7 @@
                 <ClosingTab
                     tab={tabs[key]}
                     isActive={key === selectedTab}
-                    on:closeTab
+                    on:closeTab={onCloseTab}
                     on:selectTab={onSelectTab}
                 />
             </li>
@@ -64,6 +76,7 @@
         border-radius: 0 0 6px 6px;
         border-top: 0;
         box-sizing: border-box;
+        flex: 1;
     }
 
     .btn-create {

@@ -28,6 +28,7 @@
     $: data = transform(tableData);
 </script>
 
+{#if data.length > 0}
 <table>
     <thead>
         <tr>
@@ -55,8 +56,17 @@
         {/each}
     </tbody>
 </table>
-
+{:else}
+<div class="empty">
+    No data to be displayed
+</div>
+{/if}
 <style>
+    .empty {
+        display: flex;
+        min-height: 400px;
+        align-items: center;
+    }
     table {
         border-collapse: collapse;
         table-layout: auto;
