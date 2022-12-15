@@ -1,9 +1,11 @@
 <script>
+// @ts-nocheck
+
     import { createEventDispatcher } from "svelte";
     import ClosingTab from "./ClosingTab.svelte";
 
     export let tabs = {};
-    let selectedTab = Object.keys(tabs).length > 0 ? Object.keys(tabs)[0] : "";
+    let selectedTab = "";
     let autoInc = 1;
 
     const dispatch = createEventDispatcher();
@@ -18,11 +20,11 @@
 
 <div class="box">
     <ul>
-        {#each Object.keys(tabs) as tab}
+        {#each Object.keys(tabs) as key}
             <li>
                 <ClosingTab
-                    tabName={tab}
-                    isActive={tab === selectedTab}
+                    tab={tabs[key]}
+                    isActive={key === selectedTab}
                     on:closeTab
                     on:selectTab={onSelectTab}
                 />

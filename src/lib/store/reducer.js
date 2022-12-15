@@ -12,21 +12,31 @@ export const userReducer = (state = defaultUser, action) => {
     const defaultSymbols = ["AAPL", "MSFT", "SPY"];
     const handler = {
         [Actions.CREATE_USER]: () => {
+            const watchId = `${Date.now()}`;
             return {
                 first: action.payload.first,
                 last: action.payload.last,
                 watches: {
-                    [`${action.payload.first}'s first list`]: defaultSymbols
+                    [watchId]: {
+                        id: watchId,
+                        displayName: `${action.payload.first}'s first list`,
+                        symbols: defaultSymbols
+                    }
                 }
             }
         },
 
         [Actions.CREATE_WATCH]: () => {
+            const watchId = `${Date.now()}`;
             return {
                 ...state,
                 watches: {
                     ...state.watches,
-                    [action.payload.watchId]: defaultSymbols
+                    [watchId]: {
+                        id: watchId,
+                        displayName: action.payload.displayName,
+                        symbols: defaultSymbols
+                    }
                 }
             }
         },
@@ -54,7 +64,7 @@ export const userReducer = (state = defaultUser, action) => {
             }
 
             // Add a new symbol
-            watch.push(action.payload.symbol);
+            watch.symbols.push(action.payload.symbol);
             return {
                 ...state,
                 watches: newWatches
@@ -66,10 +76,10 @@ export const userReducer = (state = defaultUser, action) => {
             const watch = newWatches[action.payload.watchId];
 
             // Error checking
-            if (!watch) return state;
+            if (!watch || !watch.symbols) return state;
 
             // Delete a symbol
-            delete watch[action.payload.symbol];
+            watch.symbols = watch.symbols.filter(symbol => symbol !== action.payload.symbol);
             return {
                 ...state,
                 watches: newWatches
