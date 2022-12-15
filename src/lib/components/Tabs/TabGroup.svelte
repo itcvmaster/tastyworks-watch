@@ -59,7 +59,7 @@
     }
 
     .tab-content {
-        padding: 30px;
+        padding: 12px 0px;
         border: 1px solid gray;
         border-radius: 0 0 6px 6px;
         border-top: 0;

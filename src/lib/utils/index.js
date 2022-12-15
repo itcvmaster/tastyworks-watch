@@ -20,5 +20,5 @@ export const makeMatchBold = (str, keyword) => {
 
 // Replace < and > all characters between
 export const removeBold = (str) => {
-	return str.replace(/<(.)*?>/g, "");
+	return str ? str.replace(/<(.)*?>/g, "") : "";
 }	

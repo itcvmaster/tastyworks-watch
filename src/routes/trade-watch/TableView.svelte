@@ -108,6 +108,6 @@
     <Table 
         headers={headers} 
         tableData={tableData}
-        on:rowClick={handleRowClick}
+        handleRowClick={handleRowClick}
     />
 </div>
