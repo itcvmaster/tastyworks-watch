@@ -29,7 +29,7 @@
     };
 
     const dispatch = createEventDispatcher();
-    const handleSubmit = () => {
+    const handleAddSymbol = () => {
         if (searchKey.trim() === "") {
             return
         }
@@ -42,7 +42,7 @@
     const navigateList = (e) => {
         if (e.key === "ArrowDown") {
             if (highlightIndex <= symbols.length - 1) {
-                highlightIndex === null 
+                highlightIndex === null || highlightIndex >= symbols.length - 1
                     ? (highlightIndex = 0) 
                     : (highlightIndex += 1);
             }
@@ -62,7 +62,7 @@
 
 <svelte:window on:keydown={navigateList} />
 
-<form autocomplete="off" on:submit|preventDefault={handleSubmit}>
+<div class="box">
     <div class="autocomplete">
         <input
             id="symbol-input"
@@ -70,56 +70,64 @@
             placeholder="Search Symbols"
             bind:this={searchInput}
             bind:value={searchKey}
-            on:input={() => debounce(fetchSymbols(), 500)}
+            on:input={() => debounce(fetchSymbols, 500)}
         />
+
+        {#if symbols.length > 0}
+            <ul id="autocomplete-items-list">
+                {#each symbols as symbols, i}
+                    <Item
+                        itemLabel={symbols}
+                        highlighted={i === highlightIndex}
+                        on:click={() => selectSymbol(symbols)}
+                    />
+                {/each}
+            </ul>
+        {/if}
     </div>
-
-    <input type="submit" value="Add Symbol" />
-
-    {#if symbols.length > 0}
-        <ul id="autocomplete-items-list">
-            {#each symbols as symbols, i}
-                <Item
-                    itemLabel={symbols}
-                    highlighted={i === highlightIndex}
-                    on:click={() => selectSymbol(symbols)}
-                />
-            {/each}
-        </ul>
-    {/if}
-</form>
+    <button on:click={handleAddSymbol}>Add Symbol</button>
+</div>
 
 <style>
+    div.box {
+        display: flex;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
     div.autocomplete {
         position: relative;
-        display: inline-block;
+        display: flex;
         width: 300px;
     }
 
     input {
         border: 1px solid transparent;
         background-color: #f1f1f1;
-        padding: 10px;
         font-size: 16px;
         margin: 0;
     }
 
     input[type="text"] {
         background-color: #f1f1f1;
+        border: 1px solid #cdcdcd;
+        border-radius: 4px;
         width: 100%;
+        padding: 10px;
     }
 
-    input[type="submit"] {
-        background-color: DodgerBlue;
-        color: #fff;
+    button {
+        cursor: pointer;
     }
 
     #autocomplete-items-list {
-        position: relative;
+        position: absolute;
         margin: 0;
         padding: 0;
-        top: 0;
-        width: 297px;
+        top: 40px;
+        width: 100%;
+        max-height: 300px;
+        overflow-y: auto;
         border: 1px solid #ddd;
         background-color: #ddd;
     }
