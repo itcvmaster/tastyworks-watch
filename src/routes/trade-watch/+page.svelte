@@ -1,11 +1,10 @@
 <script>
 	// @ts-nocheck
-	import { onMount, onDestroy } from "svelte";
+	import { onDestroy } from "svelte";
 	import { userStore } from "../../lib/store";
 	import { Actions } from "../../lib/store/actions";
 	import TableView from "./TableView.svelte";
-	// import ChartView from "./ChartView.svelte";
-	import Table from "../../lib/components/Table/Table.svelte";
+	import ChartView from "./ChartView.svelte";
 	import TabGroup from "../../lib/components/Tabs/TabGroup.svelte";
 
 	let user = {};
@@ -13,6 +12,7 @@
 	onDestroy(unsubscribe);
 
 	let selectedTab = "";
+	let selectedSymbol = "";
 	let isTableView = true;
 	const handleSelectTab = (event) => {
 		selectedTab = event.detail;
@@ -31,6 +31,15 @@
 			payload: { watchId: event.detail },
 		});
 	};
+
+	const handleViewSymbol = (symbol) => {
+		selectedSymbol = symbol;
+		isTableView = false;
+	}
+
+	const handleBack = () => {
+		isTableView = true;
+	}
 </script>
 
 <svelte:head>
@@ -49,6 +58,12 @@
 		{#if isTableView}
 			<TableView 
 				watchId={selectedTab}
+				handleViewSymbol={handleViewSymbol}
+			/>
+		{:else}
+			<ChartView 
+				selectedSymbol={selectedSymbol}
+				handleBack={handleBack}
 			/>
 		{/if}
 	</TabGroup>
