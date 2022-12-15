@@ -76,7 +76,7 @@ export const userReducer = (state = defaultUser, action) => {
             const watch = newWatches[action.payload.watchId];
 
             // Error checking
-            if (!watch || watch.symbols) return state;
+            if (!watch || !watch.symbols) return state;
 
             // Delete a symbol
             watch.symbols = watch.symbols.filter(symbol => symbol !== action.payload.symbol);
