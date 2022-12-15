@@ -10,3 +10,11 @@ export const fetchSymbols = async (searchKey) => {
 
     return result;
 }
+
+export const fetchQuotes = async (symbols) => {
+    return [];
+}
+
+export const fetchChart = async (symbol) => {
+    return [];
+}
