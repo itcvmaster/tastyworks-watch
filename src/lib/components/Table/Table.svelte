@@ -2,7 +2,7 @@
 // @ts-nocheck
 
     import StringCellRenderer from "./StringCellRenderer.svelte";
-
+    export let handleRowClick;
     export let headers = [
         // {
         //     label: "No",
@@ -39,7 +39,8 @@
 
     <tbody>
         {#each data as rowData, dataIndex}
-            <tr>
+            <!-- svelte-ignore missing-declaration -->
+            <tr on:click={() => handleRowClick(dataIndex)}>
                 {#each headers as header (header.dataKey)}
                 {@const CellRenderer = header.cellRenderer || StringCellRenderer}
                     <td>
@@ -73,6 +74,7 @@
     }
 
     tbody > tr {
+        cursor: pointer;
         background-color: lightgray;
     }
 

@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+    // @ts-nocheck
     export let cellValue = undefined;
     export let rowIndex = -1;
     export let cellOptions = {};
@@ -7,8 +7,16 @@
         if (cellOptions.action) {
             cellOptions.action(cellValue, rowIndex);
         }
-    }
+    };
 </script>
+
 <button on:click={handleClick}>
     {cellOptions.label}
 </button>
+
+<style>
+    button {
+        cursor: pointer;
+        padding: 5px 10px;
+    }
+</style>
