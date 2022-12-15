@@ -45,6 +45,8 @@
                     <td>
                         <CellRenderer 
                             cellValue={rowData[header.dataKey]}
+                            cellOptions={header.cellOptions}
+                            rowIndex={dataIndex}
                         />
                     </td>
                 {/each}
