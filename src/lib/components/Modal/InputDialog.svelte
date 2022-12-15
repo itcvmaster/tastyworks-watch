@@ -1,16 +1,29 @@
 <script>
 // @ts-nocheck
 
-    import { onDestroy } from "svelte";
+    import { onMount, onDestroy } from "svelte";
 
     export let onClose;
     export let onOK;
     export let title;
 
+    let inputRef;
     let modal;
     let value = "";
 
-    const handle_keydown = (e) => {
+    onMount(() => inputRef.focus());
+    
+    const handleInput = () => {
+        if (!value.trim()) {
+            value = "";
+            inputRef.focus();
+            return;
+        }
+
+        onOK(value);
+    }
+
+    const handleKeyDown = (e) => {
         if (e.key === "Escape") {
             close();
             return;
@@ -42,7 +55,7 @@
     }
 </script>
 
-<svelte:window on:keydown={handle_keydown} />
+<svelte:window on:keydown={handleKeyDown} />
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="modal-background" on:click={close} />
@@ -57,11 +70,15 @@
         </button>
     </div>
     <div class="modal-body">
-        <input bind:value={value} />
+        <input 
+            bind:this={inputRef} 
+            bind:value={value} 
+            placeholder="Input non-empty string"
+        />
     </div>
     <div class="modal-footer">
         <button on:click={onClose}>Close</button>
-        <button on:click={() => onOK(value)}>OK</button
+        <button on:click={handleInput}>OK</button
         >
     </div>
 </div>

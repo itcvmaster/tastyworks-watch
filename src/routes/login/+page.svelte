@@ -12,6 +12,16 @@
 	let last = "";
 
 	const handleClick = () => {
+		if (!first.trim()) {
+			alert("First name should not be empty");
+			return;
+		}
+
+		if (!last.trim()) {
+			alert("First name should not be empty");
+			return;
+		}
+
 		userStore.dispatch({
 			type: Actions.CREATE_USER,
 			payload: {

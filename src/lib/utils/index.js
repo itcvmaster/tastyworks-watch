@@ -25,13 +25,13 @@ export const removeBold = (str) => {
 
 // Calc & Return a function to apply scale
 export const calcScale = (domain, range) => {
-	[min, max] = domain;
-	[start, end] = range;
+	const [minV, maxV] = domain;
+	const [start, end] = range;
 
 	let scale = 0;
-	if (max !== min) {
-		scale = (end - start) / (max - min);
+	if (maxV !== minV) {
+		scale = (end - start) / (maxV - minV);
 	}
 
-	return (value) => value * scale;
+	return (value) => (value-minV) * scale + start;
 }
