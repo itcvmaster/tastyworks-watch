@@ -1,8 +1,8 @@
 <script>
     // @ts-nocheck
     import { createEventDispatcher } from "svelte";
-    import * as Api from "../../api";
-    import { makeMatchBold, removeBold, debounce } from "../../utils";
+    import * as Api from "$lib/api";
+    import { makeMatchBold, removeBold, debounce } from "$lib/utils";
     import Item from "./Item.svelte";
 
     let symbols = [];

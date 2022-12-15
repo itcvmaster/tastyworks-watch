@@ -2,8 +2,8 @@
 // @ts-nocheck
 
 	import { onDestroy } from "svelte";
-	import { userStore } from "../../lib/store";
-	import { Actions } from "../../lib/store/actions";
+	import { userStore } from "$lib/store";
+	import { Actions } from "$lib/store/actions";
 
 	let user = {};
 	let unsubscribe = userStore.subscribe(u => user = u);

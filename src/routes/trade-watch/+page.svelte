@@ -1,11 +1,11 @@
 <script>
 	// @ts-nocheck
 	import { onDestroy } from "svelte";
-	import { userStore } from "../../lib/store";
-	import { Actions } from "../../lib/store/actions";
+	import { userStore } from "$lib/store";
+	import { Actions } from "$lib/store/actions";
 	import TableView from "./TableView.svelte";
 	import ChartView from "./ChartView.svelte";
-	import TabGroup from "../../lib/components/Tabs/TabGroup.svelte";
+	import TabGroup from "$lib/components/Tabs/TabGroup.svelte";
 
 	let user = {};
 	let unsubscribe = userStore.subscribe((u) => (user = u));
