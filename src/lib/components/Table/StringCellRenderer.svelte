@@ -1,7 +1,7 @@
 <script>
     export let cellValue = "";
-    export const rowIndex = "";
-    export const cellOptions = "";
+    export let rowIndex = "";
+    export let cellOptions = "";
 </script>
 <div>
     {cellValue}
