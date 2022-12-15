@@ -59,7 +59,7 @@ export const userReducer = (state = defaultUser, action) => {
             if (!watch) return state;
 
             // Check duplicated symbols
-            if (watch.find((symbol) => sym === action.payload.symbol)) {
+            if (watch.symbols.find((symbol) => symbol === action.payload.symbol)) {
                 return state;
             }
 
