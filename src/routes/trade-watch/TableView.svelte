@@ -1,6 +1,7 @@
 <script>
     // @ts-nocheck
     import { onDestroy } from "svelte";
+    import * as Api from "$lib/api";
     import { userStore } from "$lib/store";
     import { Actions } from "$lib/store/actions";
     import Table from "$lib/components/Table/Table.svelte";
@@ -13,24 +14,14 @@
 
     export let watchId = "";
     let tableData = [];
-    const fetchQuotes = (id) => {
+    const fetchQuotes = async (id) => {
         const symbols = user?.watches[id]?.symbols || [];
-        tableData = (symbols || []).map((symbol) => ({
-            symbol: symbol,
-            desc: symbol + "'s Description" + Date.now(),
-            bid_price: symbol + "'s Bid Price'",
-            ask_price: symbol + "'s Ask Price",
-            last_price: symbol + "'s Last Price",
-        }));
+        tableData = await Api.fetchQuotes(symbols);
     }
     $: fetchQuotes(watchId);
 
     const fetcher = setInterval(() => fetchQuotes(watchId), 5000);
     onDestroy(() => clearInterval(fetcher));
-
-    // const handleClickCell = (event) => {
-
-    // }
 
     const handleDeleteSymbol = (_cellValue, rowIndex) => {
         userStore.dispatch({

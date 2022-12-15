@@ -8,17 +8,12 @@
     export let handleSelectTab;
     export let selectedTab = "";
 
-    let autoInc = 1;
-
     const onCloseTab = (event) => {
         handleCloseTab(event.detail);
     };
     const onSelectTab = (event) => {
         selectedTab = event.detail;
         handleSelectTab(selectedTab);
-    };
-    const onCreateTab = () => {
-        handleCreateTab("Watch" + autoInc++);
     };
 
     $: if (Object.keys(tabs).length > 0 && tabs[selectedTab] == undefined) {
@@ -43,7 +38,7 @@
             </li>
         {/each}
         <li>
-            <button class="btn-create" on:click={onCreateTab}> + </button>
+            <button class="btn-create" on:click={handleCreateTab}> + </button>
         </li>
     </ul>
     <div class="tab-content">
