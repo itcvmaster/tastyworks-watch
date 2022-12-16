@@ -5,7 +5,7 @@
 	import { Actions } from "$lib/store/actions";
 	import TableView from "./TableView.svelte";
 	import ChartView from "./ChartView.svelte";
-	import { TabGroup, InputDialog } from "$lib/components";
+	import { TabGroup } from "$lib/components";
 
 	// Get User Data from store
 	let user = {};
@@ -13,10 +13,7 @@
 	onDestroy(unsubscribe);
 
 	// Creating a new watch list
-	let showInputModal = false;
-	const onClose = () => (showInputModal = false);
-	const onOK = (displayName) => {
-		showInputModal = false;
+	const handleCreateTab = (displayName) => {
 		const watchId = `${Date.now()}`;
 		userStore.dispatch({
 			type: Actions.CREATE_WATCH,
@@ -24,10 +21,6 @@
 		});
 
 		selectedTab = watchId;
-	};
-
-	const handleCreateTab = () => {
-		showInputModal = true;
 	};
 
 	// Selecting & Closing Tabs
@@ -79,12 +72,4 @@
 		{/if}
 	</TabGroup>
 
-	{#if showInputModal}
-		<!-- svelte-ignore missing-declaration -->
-		<InputDialog 
-			title={"Input Watch List Title."}
-			onOK={onOK}
-			onClose={onClose}
-		/>
-	{/if}
 </div>

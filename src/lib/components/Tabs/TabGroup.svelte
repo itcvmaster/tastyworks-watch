@@ -1,6 +1,7 @@
 <script>
 // @ts-nocheck
     import ClosingTab from "./ClosingTab.svelte";
+    import { InputDialog } from "$lib/components";
 
     export let tabs = {};
     export let handleCloseTab;
@@ -23,6 +24,17 @@
     $: if (Object.keys(tabs).length <= 0) {
         onSelectTab({detail: ""});
     }
+
+    let showInputModal = false;
+    const handleClick = () => {
+        showInputModal = true;
+    }
+
+    const onClose = () => (showInputModal = false);
+	const onOK = (displayName) => {
+        showInputModal = false;
+		handleCreateTab(displayName);
+	};
 </script>
 
 <div class="box">
@@ -38,7 +50,7 @@
             </li>
         {/each}
         <li>
-            <button class="btn-create" on:click={handleCreateTab}> + </button>
+            <button class="btn-create" on:click|preventDefault={handleClick}> + </button>
         </li>
     </ul>
     <div class="tab-content">
@@ -46,6 +58,15 @@
             <em>No watch list has been added.</em>
         </slot>
     </div>
+    {#if showInputModal}
+        <!-- svelte-ignore missing-declaration -->
+        <InputDialog 
+            title={"Input Watch List Title."}
+            onOK={onOK}
+            onClose={onClose}
+        />
+    {/if}
+
 </div>
 
 <style>
