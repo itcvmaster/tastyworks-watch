@@ -28,11 +28,6 @@
             onClose();
             return;
         }
-
-        if (e.key === "Enter") {
-            handleInput();
-            return;
-        }
     };
 
     const previously_focused =
