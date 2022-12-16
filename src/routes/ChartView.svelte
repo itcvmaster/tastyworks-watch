@@ -3,7 +3,7 @@
 
     import { onMount, onDestroy } from "svelte";
     import * as Api from "$lib/api";
-    import Chart from "$lib/components/Chart/Chart.svelte";
+    import { Chart } from "$lib/components";
 
     export let selectedSymbol = undefined;
     export let handleBack = undefined;

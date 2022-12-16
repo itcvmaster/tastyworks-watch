@@ -25,23 +25,13 @@
 
     const handleKeyDown = (e) => {
         if (e.key === "Escape") {
-            close();
+            onClose();
             return;
         }
 
-        if (e.key === "Tab") {
-            // trap focus
-            const nodes = modal.querySelectorAll("*");
-            const tabbable = Array.from(nodes).filter((n) => n.tabIndex >= 0);
-
-            let index = tabbable.indexOf(document.activeElement);
-            if (index === -1 && e.shiftKey) index = 0;
-
-            index += tabbable.length + (e.shiftKey ? -1 : 1);
-            index %= tabbable.length;
-
-            tabbable[index].focus();
-            e.preventDefault();
+        if (e.key === "Enter") {
+            handleInput();
+            return;
         }
     };
 
@@ -55,7 +45,7 @@
     }
 </script>
 
-<svelte:window on:keydown={handleKeyDown} />
+<svelte:window on:keydown|stopPropagation={handleKeyDown} />
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="modal-background" on:click={close} />

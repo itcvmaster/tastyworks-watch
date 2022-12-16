@@ -1,12 +1,11 @@
 <script>
 	// @ts-nocheck
-	import { onDestroy, getContext } from "svelte";
+	import { onDestroy } from "svelte";
 	import { userStore } from "$lib/store";
 	import { Actions } from "$lib/store/actions";
 	import TableView from "./TableView.svelte";
 	import ChartView from "./ChartView.svelte";
-	import TabGroup from "$lib/components/Tabs/TabGroup.svelte";
-	import InputDialog from "$lib/components/Modal/InputDialog.svelte";
+	import { TabGroup, InputDialog } from "$lib/components";
 
 	// Get User Data from store
 	let user = {};
@@ -27,6 +26,7 @@
 		selectedTab = watchId;
 	};
 
+	$: console.log(showInputModal);
 	const handleCreateTab = () => {
 		showInputModal = true;
 	};

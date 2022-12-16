@@ -4,10 +4,8 @@
     import * as Api from "$lib/api";
     import { userStore } from "$lib/store";
     import { Actions } from "$lib/store/actions";
-    import Table from "$lib/components/Table/Table.svelte";
-    import ActionCellRenderer from "$lib/components/Table/ActionCellRenderer.svelte";
-    import AutoComplete from "$lib/components/AutoComplete/AutoComplete.svelte";
-
+    import { Table, ActionCellRenderer, AutoComplete } from "$lib/components";
+    
     let user = {};
     let unsubscribe = userStore.subscribe((u) => (user = u));
     onDestroy(unsubscribe);
