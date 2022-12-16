@@ -52,7 +52,7 @@
 			<label for={last}>Last Name:</label>
 			<input type=string bind:value={last} />	
 		</div>
-		<button on:click={handleClick}>Log in</button>
+		<input type="submit" class="submit" value="Log in" />
 	</form>
 </div>
 
@@ -80,7 +80,7 @@
 		font-weight: 300;
 	}
 
-	button {
+	.submit {
 		margin-top: 50px;
 		width: 100%;
 		background-color: #ffffff;
