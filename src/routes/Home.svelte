@@ -26,7 +26,6 @@
 		selectedTab = watchId;
 	};
 
-	$: console.log(showInputModal);
 	const handleCreateTab = () => {
 		showInputModal = true;
 	};
