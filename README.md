@@ -88,21 +88,6 @@ npm run dev -- --open
 
 ## Future works
 - I didn't use any 3party library. So you can choose to use any library to replace any component as you want.
-- Routing was not implemented correctly.
-  - It is recommended to make routes for each page, but for now it has only 1 routing.
-  - The ideal routing will be like this.
-  ```
-  /login: Login Page
-  /trade-watch: Non selected Trade View Page
-  /trade-watch/[:slug]: [slug] Watch List View Page
-  /chart-view/[:slug]: [slug] Symbol + History Chart View Page
-  ```
-  - I implemented AppGuard to force users to redirect to
-    1. Login page if they access `/trade-watch` page without opted in.
-    2. Trade-watch page if they access `/login` page even after opted in.
-  - But I couldn't figure out a way to redirect users automatically to a URL inside script. So I chose to stay with single routing.
-    - To do above, I think I have to use 3party routing packages like svelte-routing, svelte-navigator or tinro
-- Slots and Layouts didn't implement correctly for the AppGuard. It is because of not fully understanding the Routing logic behind.
 - CSS Styling should be updated to make it look beautiful.
 
 ## Enjoy!
