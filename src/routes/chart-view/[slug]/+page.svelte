@@ -1,12 +1,21 @@
 <script>
     // @ts-nocheck
-
     import { onMount, onDestroy } from "svelte";
+    import { page } from "$app/stores";
     import * as Api from "$lib/api";
     import { Chart } from "$lib/components";
+    import { goto, afterNavigate } from "$app/navigation";
 
-    export let selectedSymbol = undefined;
-    export let handleBack = undefined;
+    let selectedSymbol = $page?.params?.slug;
+    let previousPage = "";
+    afterNavigate( ({from}) => {
+        previousPage = from?.url.pathname || "";
+        return true;
+    })
+
+    const handleBack = () => {
+        goto(previousPage);
+    };
 
     let quotes = {};
     let chart = [];

@@ -2,6 +2,7 @@
 import { Actions } from "./actions";
 
 export const defaultUser = {
+    isInitialized: false,
     first: "",
     last: "",
     watches: {}
@@ -14,6 +15,7 @@ export const userReducer = (state = defaultUser, action) => {
         [Actions.CREATE_USER]: () => {
             const watchId = `${Date.now()}`;
             return {
+                isInitialized: true,
                 first: action.payload.first,
                 last: action.payload.last,
                 watches: {
