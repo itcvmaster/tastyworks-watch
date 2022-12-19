@@ -1,25 +1,31 @@
 <script>
     // @ts-nocheck
     import { onDestroy } from "svelte";
+    import { page } from "$app/stores";
     import * as Api from "$lib/api";
     import { userStore } from "$lib/store";
     import { Actions } from "$lib/store/actions";
     import { Table, ActionCellRenderer, AutoComplete } from "$lib/components";
+    import { goto } from "$app/navigation";
     
     let user = {};
     let unsubscribe = userStore.subscribe((u) => (user = u));
     onDestroy(unsubscribe);
 
-    export let watchId = "";
     let tableData = [];
     const fetchQuotes = async (id) => {
         const symbols = user?.watches[id]?.symbols || [];
         tableData = await Api.fetchQuotes(symbols);
     }
-    $: fetchQuotes(watchId);
 
+    let watchId = $page.params.slug;
+    $: {
+        watchId = $page.params.slug;
+        fetchQuotes(watchId);
+    }
     const fetcher = setInterval(() => fetchQuotes(watchId), 5000);
     onDestroy(() => clearInterval(fetcher));
+
 
     const handleDeleteSymbol = (_cellValue, rowIndex) => {
         userStore.dispatch({
@@ -45,10 +51,9 @@
         fetchQuotes(watchId);
     }
 
-    export let handleViewSymbol;
     const handleRowClick = (rowIndex) => {
         const symbol = tableData[rowIndex].symbol;
-        handleViewSymbol && handleViewSymbol(symbol);
+        goto(`/chart-view/${symbol}`);
     }
     
     const headers = [
