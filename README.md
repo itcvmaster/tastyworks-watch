@@ -1,3 +1,14 @@
++ good ux
+- manually subscribes store instance rather than taking advantage of auto-subscribe
++ autocomplete has manually implemented tabbed highlighting
++ used debounce on symbol search
++ charting is well done. Could have been a bit DRYer
++ cell renderer pattern
+~ the app does not go to login screen on subsequent loads
+~ used svelte-kit
+~ used familiar redux-style reducers for managing store state. Slight anti-pattern, but I appreciate the intention behind this
+~ doesn't use URLSearchParams api
+
 # A Stock Watchlist App
 The goal of this app is to provide a way for a user to manage watchlists of quotes.
 

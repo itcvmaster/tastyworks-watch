@@ -6,7 +6,7 @@
     export let headers = [
         // {
         //     label: "No",
-        //     dataKey: "AUTO_INC", // presevered
+        //     dataKey: "AUTO_INC", // preserved
         //     cellRenderer: StringCellRenderer,
         //     cellOptions: {}
         // },

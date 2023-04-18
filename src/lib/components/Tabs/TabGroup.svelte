@@ -31,10 +31,10 @@
     }
 
     const onClose = () => (showInputModal = false);
-	const onOK = (displayName) => {
+    const onOK = (displayName) => {
         showInputModal = false;
-		handleCreateTab(displayName);
-	};
+        handleCreateTab(displayName);
+    };
 </script>
 
 <div class="box">
